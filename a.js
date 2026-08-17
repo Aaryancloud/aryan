@@ -3,6 +3,32 @@ var typed = new Typed('#element', {
   strings: ['App Developer', 'Front-end Developer', 'UI/UX Designer', 'Video Editor', 'Content Creator'],
   typeSpeed: 50,
 });
+function sendmail() {
+  var params ={
+
+    name : document.getElementById("name").value,
+    email : document.getElementById("email").value,
+    message : document.getElementById("message").value,
+    
+
+  }
+  const serviceID = "service_3up787r"
+  const templateID = "template_8nmx4tk"
+
+  emailjs.send(serviceID,templateID,params)
+ .then(
+  res =>{
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+    console.log(res);
+    alert("Your Message sent succesfully");
+  }
+)
+.catch(err=>console.log(err));
+
+
+}
 
 
 const menu = document.querySelector('.menu'), links = document.querySelector('.links');
