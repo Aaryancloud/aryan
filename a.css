@@ -16,6 +16,23 @@
     --ease-out: cubic-bezier(.16, 1, .3, 1);
 }
 
+body.light-theme {
+    --bg: #f5f3f1;
+    --bg-deep: #e9e5e3;
+    --surface: #ffffff;
+    --surface-2: #f8f6f5;
+    --surface-3: #eeeae8;
+    --text: #211d1e;
+    --muted: #665d60;
+    --brand: #b30d27;
+    --brand-bright: #b30d27;
+    --brand-dark: #7d0b1a;
+    --accent: #a40b24;
+    --line: rgba(33, 29, 30, .14);
+    --line-red: rgba(180, 8, 28, .42);
+    --shadow: 0 22px 60px rgba(70, 39, 42, .16);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -34,6 +51,13 @@ body {
         radial-gradient(circle at 85% -10%, rgba(151, 7, 23, .32), transparent 29rem),
         radial-gradient(circle at 5% 38%, rgba(96, 5, 14, .13), transparent 28rem),
         linear-gradient(145deg, #090909 0%, var(--bg) 48%, var(--bg-deep) 100%);
+    transition: background .35s ease, color .35s ease;
+}
+
+body.light-theme {
+    background:
+        radial-gradient(circle at 85% -10%, rgba(215, 11, 32, .14), transparent 29rem),
+        linear-gradient(145deg, #fff 0%, var(--bg) 55%, var(--bg-deep) 100%);
 }
 
 a {
@@ -65,6 +89,30 @@ nav {
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+body.light-theme nav {
+    background: rgba(255, 255, 255, .82);
+    border-bottom-color: var(--line);
+}
+
+body.light-theme .metric,
+body.light-theme .skill,
+body.light-theme .project,
+body.light-theme form,
+body.light-theme .certificate-card,
+body.light-theme .education-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, .98), rgba(244, 240, 239, .98));
+}
+
+body.light-theme input,
+body.light-theme textarea {
+    background: #fff;
+    color: var(--text);
+}
+
+body.light-theme .links.show {
+    background: #fff;
 }
 
 .nav-in {
@@ -132,6 +180,26 @@ nav {
     cursor: pointer;
 }
 
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    font-size: .82rem;
+    cursor: pointer;
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--line-red);
+    background: rgba(215, 11, 32, .08);
+    transform: translateY(-2px);
+}
+
 .hero {
     min-height: 650px;
     display: grid;
@@ -165,6 +233,12 @@ nav {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+body.light-theme .gradient {
+    background: linear-gradient(105deg, #211d1e 18%, #8e1727 58%, var(--brand-bright) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .hero p {
@@ -240,6 +314,8 @@ nav {
 }
 
 .orb {
+    position: relative;
+    overflow: hidden;
     width: 290px;
     height: 290px;
     border-radius: 50%;
@@ -252,17 +328,36 @@ nav {
     animation: orb-float 7s ease-in-out infinite;
 }
 
+.orb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: saturate(.92) contrast(1.04);
+}
+
 .avatar {
-    width: 250px;
-    height: 250px;
-    border: 8px solid rgba(255, 255, 255, .13);
-    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
     display: grid;
     place-items: center;
-    font-size: 6rem;
-    background: linear-gradient(135deg, #edc29d 0 35%, #381014 36%, #17070a 100%);
-    box-shadow: var(--shadow);
-    animation: avatar-float 7s ease-in-out infinite;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f1384d, #bd0a1d);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 5rem;
+}
+
+.avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transform: scale(1.14);
+    transform-origin: center;
 }
 
 .float {
@@ -402,6 +497,10 @@ form {
     background: #292426;
 }
 
+body.light-theme .bar {
+    background: #d9d1d1;
+}
+
 .bar i {
     display: block;
     height: 100%;
@@ -471,6 +570,12 @@ form {
     color: #f0c7ca;
     background: rgba(174, 10, 28, .15);
     font-size: .76rem;
+}
+
+body.light-theme .tag {
+    color: #8e1727;
+    background: rgba(179, 13, 39, .1);
+    border-color: rgba(179, 13, 39, .24);
 }
 
 .project h3 {
@@ -675,6 +780,10 @@ footer {
     font-size: .95rem;
 }
 
+body.light-theme .education-card h4 {
+    color: #7d2634;
+}
+
 .education-card p,
 .certificate-card p {
     color: var(--muted);
@@ -728,6 +837,10 @@ footer {
 .certificate-link:hover {
     color: #fff;
     transform: translateX(4px);
+}
+
+body.light-theme .certificate-link:hover {
+    color: #6f0a19;
 }
 
 .details a {

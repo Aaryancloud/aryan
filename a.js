@@ -34,6 +34,23 @@ function sendmail() {
 const menu = document.querySelector('.menu'), links = document.querySelector('.links');
 menu.addEventListener('click', () => { const visible = links.classList.toggle('show'); menu.setAttribute('aria-expanded', visible); });
 document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => links.classList.remove('show')));
+
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('portfolio-theme');
+
+function setTheme(theme) {
+  const light = theme === 'light';
+  document.body.classList.toggle('light-theme', light);
+  themeToggle.setAttribute('aria-pressed', light);
+  themeToggle.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+  themeToggle.querySelector('.theme-label').textContent = light ? 'Dark' : 'Light';
+  themeToggle.querySelector('span').textContent = light ? '☾' : '☼';
+  localStorage.setItem('portfolio-theme', theme);
+}
+
+setTheme(savedTheme === 'light' ? 'light' : 'dark');
+themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('light-theme') ? 'dark' : 'light'));
+
 document.getElementById('year').textContent = new Date().getFullYear();
 document.getElementById('resumeBtn').addEventListener('click', () => { const text = 'Aaryan Kulshreshtha\nFront-end developer & designer\nhello@aaryankulshreshtha.dev\n\nSkills: HTML, CSS, JavaScript, UI/UX, React'; const url = URL.createObjectURL(new Blob([text], { type: 'text/plain' })); const a = document.createElement('a'); a.href = url; a.download = 'aaryan-kulshreshtha-resume.txt'; a.click(); URL.revokeObjectURL(url); });
 const modal = document.getElementById('modal'); document.querySelectorAll('[data-project]').forEach(btn => btn.addEventListener('click', () => { document.getElementById('modalTitle').textContent = btn.dataset.project; document.getElementById('modalText').textContent = 'A project case study placeholder. Replace this with your live project URL or detailed case study.'; modal.classList.add('open'); }));
