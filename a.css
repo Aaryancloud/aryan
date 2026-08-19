@@ -80,7 +80,6 @@ button {
     margin: auto;
 }
 
-
 nav {
     position: sticky;
     top: 0;
@@ -1038,5 +1037,108 @@ body.light-theme .certificate-link:hover {
 
     section {
         padding: 70px 0;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 480px) {
+    .wrap {
+        width: min(100% - 28px, 1120px);
+    }
+
+    .nav-in {
+        height: 62px;
+    }
+
+    .brand {
+        font-size: 1rem;
+    }
+
+    .theme-toggle {
+        padding: 7px 9px;
+        font-size: .75rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 45px 0 60px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.35rem, 14vw, 3.8rem);
+        overflow-wrap: anywhere;
+    }
+
+    .hero p {
+        font-size: .95rem;
+    }
+
+    .actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-art {
+        height: 240px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .orb {
+        width: 180px;
+        height: 180px;
+    }
+
+    .float {
+        z-index: 2;
+        padding: 8px 10px;
+        font-size: .72rem;
+        white-space: nowrap;
+        animation: none;
+    }
+
+    .float.one {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .float.two {
+        right: 50%;
+        bottom: 0;
+        transform: translateX(50%);
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-art {
+        height: 290px;
+    }
+
+    .orb {
+        width: 165px;
+        height: 165px;
+    }
+
+    .float {
+        font-size: .65rem;
     }
 }
